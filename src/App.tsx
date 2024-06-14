@@ -1,63 +1,62 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
+import React, { useMemo, useState } from 'react';
 import './App.css';
 
 
 const flashcardData = [
   {
-    en: ['zero'],
+    en: ['0'],
     kr: ['영', '공'],
   },
   {
-    en: ['one'],
+    en: ['1'],
     kr: ['일'],
   },
   {
-    en: ['two'],
+    en: ['2'],
     kr: ['이'],
   },
   {
-    en: ['three'],
+    en: ['3'],
     kr: ['삼'],
   },
   {
-    en: ['four'],
+    en: ['4'],
     kr: ['사'],
   },
   {
-    en: ['five'],
+    en: ['5'],
     kr: ['오'],
   },
   {
-    en: ['six'],
+    en: ['6'],
     kr: ['육'],
   },
   {
-    en: ['seven'],
+    en: ['7'],
     kr: ['칠'],
   },
   {
-    en: ['eight'],
+    en: ['8'],
     kr: ['팔'],
   },
   {
-    en: ['nine'],
+    en: ['9'],
     kr: ['구'],
   },
   {
-    en: ['ten'],
+    en: ['10'],
     kr: ['십'],
   },
   {
-    en: ['hundred'],
+    en: ['100'],
     kr: ['백'],
   },
   {
-    en: ['thousand'],
+    en: ['1,000'],
     kr: ['천'],
   },
   {
-    en: ['ten thousand'],
+    en: ['10,000'],
     kr: ['만'],
   },
 ];
@@ -67,17 +66,13 @@ enum Side {
   Back = 'Back',
 }
 
-const getRandomFlashcard = () => {
-  const randomIndex = Math.floor(Math.random() * flashcardData.length);
-  return flashcardData[randomIndex];
-};
-
 const App = () => {
-  const [currentCard, setCurrentCard] = useState<any>();
+  const shuffledFlashcardData = useMemo(() => flashcardData.sort(() => Math.random() - 0.5), []);
+  // const shuffledFlashcardData = flashcardData;
+
   const [side, setSide] = useState(Side.Front);
   const [cardIndex, setCardIndex] = useState(0);
 
-  const shuffledFlashcardData = flashcardData.sort(() => Math.random() - 0.5);
 
   const back = () => {
     if (side === Side.Front) {
@@ -87,7 +82,6 @@ const App = () => {
         newCardIndex = shuffledFlashcardData.length - 1;
       }
       setCardIndex(newCardIndex);
-      setCurrentCard(shuffledFlashcardData[newCardIndex]);
       return;
     }
     if (side === Side.Back) {
@@ -107,31 +101,40 @@ const App = () => {
         newCardIndex = 0;
       }
       setCardIndex(newCardIndex);
-      setCurrentCard(shuffledFlashcardData[cardIndex]);
     }
   };
 
+  const getStringForList = (listOfStrings?: string[]) => {
+    if (!listOfStrings) return '';
+    const randomIndex = Math.floor(Math.random() * listOfStrings.length);
+    return listOfStrings[randomIndex];
+  };
+
+  const currentCard = shuffledFlashcardData[cardIndex];
+
   return (
-    <div className='flex items-center justify-center min-h-screen bg-red-700'>
+    <div className='flex items-center justify-center min-h-screen bg-red-300'>
       <div
         className='h-screen w-1/2  absolute top-0 left-0 flex-1 flex items-center justify-center'
         onClick={back}
-      ><p>⬅️</p>
+      ><p className={'text-4xl'}>{'<'}️</p>
       </div>
       <div
         className='z-0 w-1/2 h-screen  absolute top-0 right-0 flex-1 flex items-center justify-center'
         onClick={next}
-      ><p>➡️</p>
+      ><p className={'text-4xl'}>{'>'}️</p>
       </div>
-      <div className='z-1 text-4xl font-bold text-center'>
-        <p>{currentCard?.kr}</p>
-        <p>{side === Side.Front ? '_' : currentCard?.en}</p>
-
+      <div className='z-1 text-9xl text-center'>
+        <p className={'p-5 font-bold '}>{getStringForList(currentCard?.kr)}</p>
+        {side === Side.Front ? <div>&nbsp;</div> : <p>{getStringForList(currentCard.en)}</p>}
       </div>
 
       <div className={' absolute bottom-0 '}>
         <p>{'cardIndex:' + cardIndex}</p>
         <p>{'side:' + side}</p>
+        <p>{'cur:' + JSON.stringify(shuffledFlashcardData[cardIndex])}</p>
+        <p>{'next:' + JSON.stringify(shuffledFlashcardData[cardIndex + 1])}</p>
+        <p>{'prev:' + JSON.stringify(shuffledFlashcardData[cardIndex - 1])}</p>
       </div>
 
     </div>
