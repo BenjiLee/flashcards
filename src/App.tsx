@@ -60,7 +60,6 @@ const App = () => {
 
   return (
     <div className='flex items-center justify-center min-h-screen bg-red-300'>
-      <SettingsDrawer />
 
       <div
         className='h-screen w-1/2  absolute top-0 left-0 flex-1 flex items-center justify-center'
@@ -76,6 +75,8 @@ const App = () => {
         <p className={'p-5 font-bold '}>{getStringForList(currentCard?.kr)}</p>
         {side === Side.Front ? <div>&nbsp;</div> : <p>{getStringForList(currentCard.en)}</p>}
       </div>
+      <SettingsDrawer />
+
 
       {/*<div className={' absolute bottom-0 '}>*/}
       {/*  <p>{'cardIndex:' + cardIndex}</p>*/}
