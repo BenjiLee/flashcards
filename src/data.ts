@@ -84,4 +84,21 @@ const items = [
   { en: ['dictionary'], kr: ['사전'] },
 ];
 
-export { countries, numbers, jobs, items };
+export const FlashCards = {
+  countries: {
+    title: 'Countries',
+    data: countries,
+  },
+  numbers: {
+    title: 'Numbers',
+    data: numbers,
+  },
+  jobs: {
+    title: 'Jobs',
+    data: jobs,
+  },
+  items: {
+    title: 'Items',
+    data: items,
+  },
+};

@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from 'react';
 import './App.css';
-import { countries, items, jobs, numbers } from './data';
 import SettingsDrawer from './SettingsDrawer';
+import { FlashCards } from './data';
 
 
-const flashcardData = [...countries, ...numbers, ...jobs, ...items];
+const flashcardData = [...FlashCards.countries.data];
 
 enum Side {
   Front = 'Front',
