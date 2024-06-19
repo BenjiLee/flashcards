@@ -43,7 +43,8 @@ const jobs = [
   { en: ['police officer'], kr: ['경찰'] },
   { en: ['firefighter'], kr: ['소방관'] },
   { en: ['nurse'], kr: ['간호사'] },
-  { en: ['lawyer'], kr: ['변호사'] }, { en: ['chef'], kr: ['요리사'] },
+  { en: ['lawyer'], kr: ['변호사'] },
+  { en: ['chef'], kr: ['요리사'] },
   { en: ['artist'], kr: ['예술가'] },
   { en: ['singer'], kr: ['가수'] },
   { en: ['reporter'], kr: ['기자'] },
@@ -100,7 +101,6 @@ const App = () => {
 
   const [side, setSide] = useState(Side.Front);
   const [cardIndex, setCardIndex] = useState(0);
-
 
   const back = () => {
     if (side === Side.Front) {
