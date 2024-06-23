@@ -3,7 +3,6 @@ import './App.css';
 import SettingsDrawer from './SettingsDrawer';
 import { FlashCards } from './data';
 
-
 const flashcardData = [...FlashCards.countries.data];
 
 enum Side {
@@ -17,7 +16,6 @@ const App = () => {
 
   const [side, setSide] = useState(Side.Front);
   const [cardIndex, setCardIndex] = useState(0);
-
 
   const back = () => {
     if (side === Side.Front) {
@@ -59,33 +57,30 @@ const App = () => {
   const currentCard = shuffledFlashcardData[cardIndex];
 
   return (
-    <div className='flex items-center justify-center min-h-screen bg-red-300'>
-
+    <div className="flex items-center justify-center min-h-screen bg-gray-700">
       <div
-        className='h-screen w-1/2  absolute top-0 left-0 flex-1 flex items-center justify-center'
+        className="h-screen w-1/2  absolute top-0 left-0 flex-1 flex items-center justify-center"
         onClick={back}
-      ><p className={'text-4xl'}>{'<'}️</p>
+      >
+        <p className={'text-4xl'}>{'<'}️</p>
       </div>
       <div
-        className='z-0 w-1/2 h-screen  absolute top-0 right-0 flex-1 flex items-center justify-center'
+        className="z-0 w-1/2 h-screen absolute top-0 right-0 flex-1 flex items-center justify-center"
         onClick={next}
-      ><p className={'text-4xl'}>{'>'}️</p>
+      >
+        <p className={'text-4xl'}>{'>'}️</p>
       </div>
-      <div className='z-1 text-9xl text-center'>
-        <p className={'p-5 font-bold '}>{getStringForList(currentCard?.kr)}</p>
-        {side === Side.Front ? <div>&nbsp;</div> : <p>{getStringForList(currentCard.en)}</p>}
+      <div className="z-1 m-5 pb-14 pt-14 w-full bg-red-300 text-center border-1 border-black">
+        <p className={'p-5 font-bold  text-8xl'}>{getStringForList(currentCard?.kr)}</p>
+        <div className={'text-6xl'}>
+          {side === Side.Front ? (
+            <div>&nbsp;</div>
+          ) : (
+            <p className={'text-6xl'}>{getStringForList(currentCard.en)}</p>
+          )}
+        </div>
       </div>
       <SettingsDrawer />
-
-
-      {/*<div className={' absolute bottom-0 '}>*/}
-      {/*  <p>{'cardIndex:' + cardIndex}</p>*/}
-      {/*  <p>{'side:' + side}</p>*/}
-      {/*  <p>{'cur:' + JSON.stringify(shuffledFlashcardData[cardIndex])}</p>*/}
-      {/*  <p>{'next:' + JSON.stringify(shuffledFlashcardData[cardIndex + 1])}</p>*/}
-      {/*  <p>{'prev:' + JSON.stringify(shuffledFlashcardData[cardIndex - 1])}</p>*/}
-      {/*</div>*/}
-
     </div>
   );
 };

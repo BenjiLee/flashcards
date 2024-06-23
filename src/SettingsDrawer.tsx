@@ -77,7 +77,6 @@ const SettingsDrawer = () => {
           </ul>
         </div>
       </div>
-      <h2 className={'fixed top-200 left-0'}>{'isOpen: ' + isOpen}</h2>;
     </>
   );
 };
