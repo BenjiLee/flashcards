@@ -34,16 +34,14 @@ const SettingsDrawer = () => {
     </li>
   );
 
-  return (
-    <div
-      className={`fixed top-0 left-100 w-64 h-full bg-white shadow-lg transform transition-transform ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
-    >
+  const MenuButton = () => {
+    return (
       <button
         onClick={toggleDrawer}
-        className={`fixed top-4 left-4 z-50 bg-blue-500 text-white p-2 rounded ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
+        className={`fixed top-4 -right-10 z-50 bg-white text-white p-2`}
       >
         {isOpen ? (
-          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#111111">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -52,7 +50,7 @@ const SettingsDrawer = () => {
             />
           </svg>
         ) : (
-          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#111111">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -62,20 +60,25 @@ const SettingsDrawer = () => {
           </svg>
         )}
       </button>
-      <div className="p-4">
-        <h2 className="text-2xl font-bold mb-4">Settings</h2>
-        <button
-          onClick={toggleDrawer}
-          className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
-        >
-          Close
-        </button>
-        <ul>
-          {checkbox('Countries')}
-          {checkbox('profile')}
-        </ul>
+    );
+  };
+
+  return (
+    <>
+      <div
+        className={`fixed top-0 -left-64 w-64 h-full bg-white transform transition-transform ${isOpen ? 'translate-x-full' : 'translate-x-0'}`}
+      >
+        <MenuButton />
+        <div className="p-4">
+          <h2 className="text-2xl font-bold mb-4">Settings</h2>
+          <ul>
+            {checkbox('Countries')}
+            {checkbox('profile')}
+          </ul>
+        </div>
       </div>
-    </div>
+      <h2 className={'fixed top-200 left-0'}>{'isOpen: ' + isOpen}</h2>;
+    </>
   );
 };
 
