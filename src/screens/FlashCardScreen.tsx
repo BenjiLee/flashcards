@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { FlashCards } from '../data/data';
+import SettingsDrawer from '../components/SettingsDrawer';
 
 const flashcardData = [...FlashCards.countries.data];
 
@@ -9,11 +10,20 @@ enum Side {
 }
 
 const App = () => {
-  const shuffledFlashcardData = useMemo(() => flashcardData.sort(() => Math.random() - 0.5), []);
-  // const shuffledFlashcardData = flashcardData;
-
   const [side, setSide] = useState(Side.Front);
   const [cardIndex, setCardIndex] = useState(0);
+  const [flashCardSections, setFlashCardSections] = useState(Object.keys(FlashCards));
+
+  const shuffledFlashcardData = useMemo(() => {
+    const flashcardData: any[] = [];
+    Object.keys(FlashCards).forEach((flashCardKey) => {
+      if (flashCardSections.includes(flashCardKey)) {
+        flashcardData.push(...FlashCards[flashCardKey].data);
+      }
+    });
+    flashcardData.sort(() => Math.random() - 0.5);
+    return flashcardData;
+  }, [flashCardSections]);
 
   const back = () => {
     if (side === Side.Front) {
@@ -78,6 +88,7 @@ const App = () => {
           )}
         </div>
       </div>
+      <SettingsDrawer flashCardSections={flashCardSections} />
     </div>
   );
 };
