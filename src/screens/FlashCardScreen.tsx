@@ -13,6 +13,7 @@ const InitialFlashCardSections = {
   [FlashCardSectionKeys.Numbers]: true,
   [FlashCardSectionKeys.Jobs]: true,
   [FlashCardSectionKeys.Things]: true,
+  [FlashCardSectionKeys.Food]: true,
 };
 
 const App = () => {
@@ -70,7 +71,6 @@ const App = () => {
 
   const currentCard = shuffledFlashcardData[cardIndex];
 
-  console.log('flashCardSections' + JSON.stringify(flashCardSections, null, 2));
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-300 border">
       <div

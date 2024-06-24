@@ -87,6 +87,40 @@ const things: FlashCardData[] = [
   { en: ['dictionary'], kr: ['사전'] },
 ];
 
+const food: FlashCardData[] = [
+  { en: ['apple'], kr: ['사과'] },
+  { en: ['banana'], kr: ['바나나'] },
+  { en: ['cake'], kr: ['케이크'] },
+  { en: ['green tea'], kr: ['녹차'] },
+  { en: ['coffee'], kr: ['커피'] },
+  { en: ['rice cake'], kr: ['떡'] },
+  { en: ['kimbap'], kr: ['김밥'] },
+  { en: ['bibimbap'], kr: ['비빔밥'] },
+  { en: ['ramen'], kr: ['라면'] },
+  { en: ['kimchi'], kr: ['김치'] },
+  { en: ['rice'], kr: ['밥'] },
+  { en: ['fish'], kr: ['생선'] },
+  { en: ['chicken'], kr: ['닭'] },
+  { en: ['kalbichim'], kr: ['갈비찜'] },
+  { en: ['Tteok-bokki'], kr: ['떡볶이'] },
+  { en: ['bulgogi'], kr: ['불고기'] },
+  { en: ['cinnamon punch'], kr: ['수정과'] },
+  { en: ['naengmyeon'], kr: ['냉면'] },
+  { en: ['side dishes'], kr: ['반찬'] },
+  { en: ['beanpaste stew'], kr: ['된장찌개'] },
+  { en: ['hamburger'], kr: ['햄버거'] },
+  { en: ['spaghetti'], kr: ['스파게티'] },
+  { en: ['pizza'], kr: ['피자'] },
+  { en: ['beef'], kr: ['소고기'] },
+  { en: ['pork'], kr: ['돼지고기'] },
+  { en: ['korean food'], kr: ['한식'] },
+  { en: ['japanese food'], kr: ['일식'] },
+  { en: ['chinese food'], kr: ['중식'] },
+  { en: ['western food'], kr: ['양식'] },
+  { en: ['grapes'], kr: ['포도'] },
+  { en: ['strawberry'], kr: ['딸기'] },
+];
+
 export const FlashCards: Record<string, FlashCard> = {
   [FlashCardSectionKeys.Countries]: {
     key: FlashCardSectionKeys.Countries,
@@ -107,5 +141,10 @@ export const FlashCards: Record<string, FlashCard> = {
     key: FlashCardSectionKeys.Things,
     title: 'Things',
     data: things,
+  },
+  [FlashCardSectionKeys.Food]: {
+    key: FlashCardSectionKeys.Things,
+    title: 'Food',
+    data: food,
   },
 };

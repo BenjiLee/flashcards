@@ -14,4 +14,5 @@ export const FlashCardSectionKeys = {
   Numbers: 'numbers',
   Jobs: 'jobs',
   Things: 'things',
+  Food: 'food',
 };
