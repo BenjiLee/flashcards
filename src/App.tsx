@@ -57,15 +57,15 @@ const App = () => {
   const currentCard = shuffledFlashcardData[cardIndex];
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-700">
+    <div className="flex items-center justify-center min-h-screen bg-gray-300">
       <div
-        className="h-screen w-1/2  absolute top-0 left-0 flex-1 flex items-center justify-center"
+        className="h-screen w-1/2  absolute top-0 left-0 flex-1 flex items-center pl-10"
         onClick={back}
       >
         <p className={'text-4xl'}>{'<'}️</p>
       </div>
       <div
-        className="z-0 w-1/2 h-screen absolute top-0 right-0 flex-1 flex items-center justify-center"
+        className="z-0 w-1/2 h-screen absolute top-0 right-0 flex-1 flex items-center justify-end pr-10"
         onClick={next}
       >
         <p className={'text-4xl'}>{'>'}️</p>

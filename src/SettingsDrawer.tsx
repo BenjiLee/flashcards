@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { FlashCards } from './data';
+import { FlashCard } from './types';
 
 const SettingsDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,18 +20,18 @@ const SettingsDrawer = () => {
   };
 
   // @ts-ignore FIXME
-  const checkbox = (key) => (
+  const checkbox = (flashCard: FlashCard) => (
     <li className="mb-2">
       <label className="flex items-center">
         <input
           type="checkbox"
-          name={key}
+          name={flashCard.key}
           // @ts-ignore FIXME
-          checked={checklist[key]}
+          // checked={checklist[key]}
           onChange={handleCheckboxChange}
           className="form-checkbox h-5 w-5 text-blue-600"
         />
-        <span className="ml-2 text-gray-700">Profile</span>
+        <span className="ml-2 text-gray-700">{flashCard.title}</span>
       </label>
     </li>
   );
@@ -71,10 +73,7 @@ const SettingsDrawer = () => {
         <MenuButton />
         <div className="p-4">
           <h2 className="text-2xl font-bold mb-4">Settings</h2>
-          <ul>
-            {checkbox('Countries')}
-            {checkbox('profile')}
-          </ul>
+          <ul>{Object.values(FlashCards).map((card) => checkbox(card))}</ul>
         </div>
       </div>
     </>

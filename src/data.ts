@@ -1,4 +1,6 @@
-const countries = [
+import { FlashCard, FlashCardData, FlashCardSectionKeys } from './types';
+
+const countries: FlashCardData[] = [
   { en: ['Korea'], kr: ['한국'] },
   { en: ['USA'], kr: ['미국'] },
   { en: ['China'], kr: ['중국'] },
@@ -15,7 +17,7 @@ const countries = [
   { en: ['person'], kr: ['사람'] },
 ];
 
-const numbers = [
+const numbers: FlashCardData[] = [
   { en: ['0'], kr: ['영', '공'] },
   { en: ['1'], kr: ['일'] },
   { en: ['2'], kr: ['이'] },
@@ -32,7 +34,7 @@ const numbers = [
   { en: ['10,000'], kr: ['만'] },
 ];
 
-const jobs = [
+const jobs: FlashCardData[] = [
   { en: ['doctor'], kr: ['의사'] },
   { en: ['teacher'], kr: ['선생님'] },
   { en: ['student'], kr: ['학생'] },
@@ -40,7 +42,8 @@ const jobs = [
   { en: ['police officer'], kr: ['경찰'] },
   { en: ['firefighter'], kr: ['소방관'] },
   { en: ['nurse'], kr: ['간호사'] },
-  { en: ['lawyer'], kr: ['변호사'] }, { en: ['chef'], kr: ['요리사'] },
+  { en: ['lawyer'], kr: ['변호사'] },
+  { en: ['chef'], kr: ['요리사'] },
   { en: ['artist'], kr: ['예술가'] },
   { en: ['singer'], kr: ['가수'] },
   { en: ['reporter'], kr: ['기자'] },
@@ -51,7 +54,7 @@ const jobs = [
   { en: ['researcher'], kr: ['연구원'] },
 ];
 
-const items = [
+const things: FlashCardData[] = [
   { en: ['bag'], kr: ['가방'] },
   { en: ['chair'], kr: ['의자'] },
   { en: ['desk'], kr: ['책상'] },
@@ -84,21 +87,25 @@ const items = [
   { en: ['dictionary'], kr: ['사전'] },
 ];
 
-export const FlashCards = {
-  countries: {
+export const FlashCards: Record<string, FlashCard> = {
+  [FlashCardSectionKeys.Countries]: {
+    key: FlashCardSectionKeys.Countries,
     title: 'Countries',
     data: countries,
   },
-  numbers: {
+  [FlashCardSectionKeys.Numbers]: {
+    key: FlashCardSectionKeys.Numbers,
     title: 'Numbers',
     data: numbers,
   },
-  jobs: {
+  [FlashCardSectionKeys.Jobs]: {
+    key: FlashCardSectionKeys.Jobs,
     title: 'Jobs',
     data: jobs,
   },
-  items: {
-    title: 'Items',
-    data: items,
+  [FlashCardSectionKeys.Things]: {
+    key: FlashCardSectionKeys.Things,
+    title: 'Things',
+    data: things,
   },
 };
