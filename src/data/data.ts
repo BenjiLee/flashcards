@@ -1,4 +1,4 @@
-import { FlashCard, FlashCardData, FlashCardSectionKeys } from './types';
+import { FlashCard, FlashCardData, FlashCardSectionKeys } from '../types';
 
 const countries: FlashCardData[] = [
   { en: ['Korea'], kr: ['한국'] },

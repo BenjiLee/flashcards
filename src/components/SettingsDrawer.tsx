@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { FlashCards } from './data';
-import { FlashCard } from './types';
+import { FlashCards } from '../data/data';
 
 const SettingsDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
