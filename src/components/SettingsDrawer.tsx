@@ -1,35 +1,32 @@
-import { useState } from 'react';
-import { FlashCards } from '../data/data';
+import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
 
 interface Props {
-  flashCardSections: string[];
+  flashCardSections: Record<string, boolean>;
+  setFlashCardSections: Dispatch<SetStateAction<Record<string, boolean>>>;
 }
 
-const SettingsDrawer = ({ flashCardSections }: Props) => {
+const SettingsDrawer = ({ flashCardSections, setFlashCardSections }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [checklist, setChecklist] = useState({});
 
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
   };
 
-  // @ts-ignore FIXME
-  const handleCheckboxChange = (e) => {
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
-    setChecklist((prevState) => ({
+    setFlashCardSections((prevState) => ({
       ...prevState,
       [name]: checked,
     }));
   };
 
   const checkbox = (sectionKey: string) => (
-    <li className="mb-2">
+    <li key={sectionKey} className="mb-2">
       <label className="flex items-center">
         <input
           type="checkbox"
           name={sectionKey}
-          // @ts-ignore FIXME
-          checked={checklist[sectionKey]}
+          checked={flashCardSections[sectionKey]}
           onChange={handleCheckboxChange}
           className="form-checkbox h-5 w-5 text-blue-600"
         />
@@ -75,7 +72,7 @@ const SettingsDrawer = ({ flashCardSections }: Props) => {
         <MenuButton />
         <div className="p-4">
           <h2 className="text-2xl font-bold mb-4">Settings</h2>
-          <ul>{Object.values(flashCardSections).map((section) => checkbox(section))}</ul>
+          <ul>{Object.keys(flashCardSections).map((section) => checkbox(section))}</ul>
         </div>
       </div>
     </>

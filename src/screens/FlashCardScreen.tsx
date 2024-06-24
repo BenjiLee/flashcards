@@ -1,23 +1,29 @@
 import React, { useMemo, useState } from 'react';
 import { FlashCards } from '../data/data';
 import SettingsDrawer from '../components/SettingsDrawer';
-
-const flashcardData = [...FlashCards.countries.data];
+import { FlashCardData, FlashCardSectionKeys } from '../types';
 
 enum Side {
   Front = 'Front',
   Back = 'Back',
 }
 
+const InitialFlashCardSections = {
+  [FlashCardSectionKeys.Countries]: true,
+  [FlashCardSectionKeys.Numbers]: true,
+  [FlashCardSectionKeys.Jobs]: true,
+  [FlashCardSectionKeys.Things]: true,
+};
+
 const App = () => {
   const [side, setSide] = useState(Side.Front);
   const [cardIndex, setCardIndex] = useState(0);
-  const [flashCardSections, setFlashCardSections] = useState(Object.keys(FlashCards));
+  const [flashCardSections, setFlashCardSections] = useState(InitialFlashCardSections);
 
   const shuffledFlashcardData = useMemo(() => {
-    const flashcardData: any[] = [];
+    const flashcardData: FlashCardData[] = [];
     Object.keys(FlashCards).forEach((flashCardKey) => {
-      if (flashCardSections.includes(flashCardKey)) {
+      if (flashCardSections[flashCardKey]) {
         flashcardData.push(...FlashCards[flashCardKey].data);
       }
     });
@@ -64,6 +70,7 @@ const App = () => {
 
   const currentCard = shuffledFlashcardData[cardIndex];
 
+  console.log('flashCardSections' + JSON.stringify(flashCardSections, null, 2));
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-300 border">
       <div
@@ -84,11 +91,14 @@ const App = () => {
           {side === Side.Front ? (
             <div>&nbsp;</div>
           ) : (
-            <p className={'text-6xl'}>{getStringForList(currentCard.en)}</p>
+            <p className={'text-6xl'}>{getStringForList(currentCard?.en)}</p>
           )}
         </div>
       </div>
-      <SettingsDrawer flashCardSections={flashCardSections} />
+      <SettingsDrawer
+        flashCardSections={flashCardSections}
+        setFlashCardSections={setFlashCardSections}
+      />
     </div>
   );
 };
